@@ -1,0 +1,12 @@
+{
+  "name": "@repo/config",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "exports": {
+    "./eslint-next": "./eslint-next.js",
+    "./eslint-nest": "./eslint-nest.js",
+    "./tailwind": "./tailwind.config.js",
+    "./tsconfig-next": "./tsconfig-next.json",
+    "./tsconfig-nest": "./tsconfig-nest.json"
+  }
+}
