@@ -45,7 +45,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       <div className="space-y-4">
         {/* Main Image */}
         <div className="relative w-full aspect-square bg-gray-100 rounded-lg overflow-hidden">
-          {thumbnailImage && (
+          {thumbnailImage?.url && (
             <Image
               src={thumbnailImage.url}
               alt={thumbnailImage.altText || product.name}
@@ -59,7 +59,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {/* Thumbnails */}
         {product.images.length > 1 && (
           <div className="grid grid-cols-4 gap-2">
-            {product.images.map((img) => (
+            {product.images.filter((img) => img.url).map((img) => (
               <div key={img.id} className="relative w-full aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-blue-500">
                 <Image
                   src={img.url}

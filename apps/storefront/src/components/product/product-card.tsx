@@ -16,11 +16,13 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const primaryVariant = product.variants[0];
   const thumbnailImage = product.images.find((img) => img.isThumbnail) || product.images[0];
+  
+  const price = Number(primaryVariant?.price || 0);
+  const compareAtPrice = primaryVariant?.compareAtPrice ? Number(primaryVariant.compareAtPrice) : null;
+
   const discountPercentage =
-    primaryVariant?.compareAtPrice && primaryVariant.price < primaryVariant.compareAtPrice
-      ? Math.round(
-          ((primaryVariant.compareAtPrice - primaryVariant.price) / primaryVariant.compareAtPrice) * 100,
-        )
+    compareAtPrice && price < compareAtPrice
+      ? Math.round(((compareAtPrice - price) / compareAtPrice) * 100)
       : 0;
 
   const handleAddToCart = async (e: React.MouseEvent) => {
@@ -47,7 +49,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
         {/* Image Container */}
         <div className="relative h-64 w-full overflow-hidden bg-gray-100">
-          {thumbnailImage && (
+          {thumbnailImage?.url && (
             <Image
               src={thumbnailImage.url}
               alt={thumbnailImage.altText || product.name}
@@ -113,10 +115,10 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Price */}
           <div className="flex items-baseline gap-2 mt-3">
-            <span className="text-lg font-bold text-gray-900">${primaryVariant.price.toFixed(2)}</span>
-            {primaryVariant.compareAtPrice && (
+            <span className="text-lg font-bold text-gray-900">${price.toFixed(2)}</span>
+            {compareAtPrice && (
               <span className="text-sm text-gray-500 line-through">
-                ${primaryVariant.compareAtPrice.toFixed(2)}
+                ${compareAtPrice.toFixed(2)}
               </span>
             )}
           </div>

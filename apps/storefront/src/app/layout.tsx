@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from 'sonner';
 import { Providers } from '@/components/providers/query-provider';
+import { Shell } from '@/components/layout/Shell';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -18,7 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`min-h-screen bg-background font-sans antialiased ${inter.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Providers>
-            {children}
+            <Shell>
+              {children}
+            </Shell>
             <Toaster position="top-right" richColors />
           </Providers>
         </ThemeProvider>
