@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, ShoppingBag, User } from 'lucide-react';
+import { Menu, ShoppingBag, User, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SearchInput } from '@/components/ui/SearchInput';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { MobileMenu } from '@/components/layout/MobileMenu';
-// import { useCartStore } from '@/store/cart.store';
 
 const navLinks = [
   { name: 'Products', href: '/products' },
@@ -17,8 +16,7 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const cartItemCount = useCartStore((state: any) => state.items?.length || 0);
-  const cartItemCount = 0; // Fallback for now
+  const cartItemCount = 0;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -28,56 +26,75 @@ export function Header() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 border-b ${
+      <motion.header
+        animate={{
+          backgroundColor: isScrolled ? 'rgb(255, 255, 255)' : 'transparent',
+          boxShadow: isScrolled ? '0 4px 6px -1px rgb(0 0 0 / 0.1)' : 'none',
+        }}
+        transition={{ duration: 0.3 }}
+        className={`fixed top-0 inset-x-0 z-40 border-b transition-all duration-300 ${
           isScrolled
-            ? 'bg-background/80 backdrop-blur-md border-border shadow-sm py-3'
-            : 'bg-transparent border-transparent py-5'
-        }`}
+            ? 'border-brand-200 backdrop-blur-lg'
+            : 'border-transparent'
+        } py-4 md:py-5`}
       >
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
             {/* Left: Logo & Nav */}
-            <div className="flex items-center gap-8">
-              <Link href="/" className="flex items-center gap-2 group">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold group-hover:scale-105 transition-transform">
+            <div className="flex items-center gap-10">
+              <Link href="/" className="flex items-center gap-2.5 group">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="w-9 h-9 bg-brand-800 rounded-lg flex items-center justify-center text-white font-bold text-lg"
+                >
                   S
-                </div>
-                <span className="text-xl font-bold tracking-tight hidden sm:block">
+                </motion.div>
+                <span className="text-xl font-bold tracking-tight text-brand-900 hidden sm:block">
                   STORE.
                 </span>
               </Link>
-              
-              <nav className="hidden md:flex items-center gap-6">
+
+              <nav className="hidden md:flex items-center gap-8">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                    className="text-sm font-semibold text-brand-700 hover:text-brand-900 transition-colors relative group"
                   >
                     {link.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                    <motion.span
+                      layoutId="underline"
+                      className="absolute -bottom-1 left-0 h-0.5 bg-brand-800"
+                      initial={{ width: 0 }}
+                      whileHover={{ width: '100%' }}
+                      transition={{ duration: 0.3 }}
+                    />
                   </Link>
                 ))}
               </nav>
             </div>
 
-            {/* Center: Search */}
+            {/* Center: Search - hidden on mobile, visible on lg */}
             <div className="flex-1 max-w-md mx-auto hidden lg:block">
               <SearchInput />
             </div>
 
             {/* Right: Actions */}
             <div className="flex items-center gap-2 sm:gap-4">
+              {/* Search toggle for mobile */}
               <div className="lg:hidden">
-                 <button className="p-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors">
-                   <SearchInput /> {/* We can use a search icon toggle for mobile in a full implementation */}
-                 </button>
+                <button className="p-2 text-brand-600 hover:text-brand-900 hover:bg-brand-100 rounded-lg transition-colors">
+                  <SearchInput />
+                </button>
               </div>
 
               <ThemeToggle />
 
-              <Link href="/cart" className="relative p-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors">
+              {/* Cart */}
+              <Link
+                href="/cart"
+                className="relative p-2 text-brand-600 hover:text-brand-900 hover:bg-brand-100 rounded-lg transition-colors"
+              >
                 <ShoppingBag className="w-5 h-5" />
                 <AnimatePresence>
                   {cartItemCount > 0 && (
@@ -85,7 +102,7 @@ export function Header() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       exit={{ scale: 0 }}
-                      className="absolute top-0.5 right-0.5 flex items-center justify-center w-4 h-4 text-[10px] font-bold text-primary-foreground bg-primary rounded-full"
+                      className="absolute top-1 right-1 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-brand-800 rounded-full"
                     >
                       {cartItemCount}
                     </motion.span>
@@ -93,25 +110,38 @@ export function Header() {
                 </AnimatePresence>
               </Link>
 
-              <div className="hidden sm:flex items-center gap-2 pl-2 border-l border-border">
-                <Link href="/login" className="text-sm font-medium px-3 py-2 hover:bg-muted rounded-md transition-colors">
+              {/* Auth Links */}
+              <div className="hidden sm:flex items-center gap-3 pl-3 border-l border-brand-200">
+                <Link
+                  href="/login"
+                  className="text-sm font-medium px-3 py-2 text-brand-700 hover:text-brand-900 hover:bg-brand-100 rounded-lg transition-colors"
+                >
                   Log in
                 </Link>
-                <Link href="/signup" className="text-sm font-medium px-3 py-2 bg-foreground text-background hover:opacity-90 rounded-md transition-opacity">
+                <Link
+                  href="/signup"
+                  className="text-sm font-medium px-3 py-2 bg-brand-800 text-white hover:bg-brand-900 rounded-lg transition-colors shadow-sm"
+                >
                   Sign up
                 </Link>
               </div>
 
-              <button
-                className="md:hidden p-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors"
-                onClick={() => setMobileMenuOpen(true)}
+              {/* Mobile Menu Toggle */}
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                className="md:hidden p-2 text-brand-600 hover:text-brand-900 hover:bg-brand-100 rounded-lg transition-colors"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
-                <Menu className="w-5 h-5" />
-              </button>
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
+              </motion.button>
             </div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
     </>

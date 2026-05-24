@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { useProducts, useCategories } from '@/hooks/useProducts';
 import { ProductSearch } from '@/components/product/product-search';
 import { ProductFilters } from '@/components/product/product-filters';
@@ -25,53 +26,110 @@ function ProductsContent() {
 
   return (
     <div className="space-y-8">
-      {/* Search */}
-      <div>
+      {/* Search Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
         <ProductSearch />
-      </div>
+      </motion.div>
 
-      {/* Main Content */}
+      {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Sidebar */}
-        <div className="lg:col-span-1">
+        {/* Sidebar Filters */}
+        <motion.div
+          className="lg:col-span-1"
+          initial={{ opacity: 0, x: -16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
+        >
           <ProductFilters categories={categories} />
-        </div>
+        </motion.div>
 
-        {/* Products */}
-        <div className="lg:col-span-3">
-          <div className="mb-6">
-            <p className="text-sm text-gray-600">
+        {/* Products Section */}
+        <div className="lg:col-span-3 space-y-6">
+          {/* Results Header */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="flex items-center justify-between"
+          >
+            <p className="text-sm font-medium text-brand-600">
               {productsData?.pagination ? (
                 <>
-                  Showing {((productsData.pagination.page - 1) * productsData.pagination.limit) + 1} -{' '}
-                  {Math.min(productsData.pagination.page * productsData.pagination.limit, productsData.pagination.total)} of{' '}
-                  {productsData.pagination.total} products
+                  <span className="text-brand-900 font-semibold">{productsData.pagination.total}</span> products
+                  {productsData.pagination.page > 1 && (
+                    <>
+                      {' '} • Page <span className="text-brand-900 font-semibold">{productsData.pagination.page}</span>
+                    </>
+                  )}
                 </>
               ) : (
-                'Loading...'
+                'Loading products...'
               )}
             </p>
-          </div>
+          </motion.div>
 
+          {/* Products Grid */}
           <ProductGrid products={productsData?.data || []} isLoading={isLoading} />
 
           {/* Pagination */}
           {productsData?.pagination && productsData.pagination.pages > 1 && (
-            <div className="mt-8 flex justify-center gap-2">
-              {Array.from({ length: productsData.pagination.pages }).map((_, i) => (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="mt-12 flex justify-center gap-2"
+            >
+              {/* Previous Button */}
+              {productsData.pagination.page > 1 && (
                 <a
-                  key={i + 1}
-                  href={`/products?page=${i + 1}${searchParams.toString() ? `&${searchParams.toString()}` : ''}`}
-                  className={`px-4 py-2 rounded border ${
-                    productsData.pagination.page === i + 1
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'border-gray-300 hover:border-gray-400'
-                  }`}
+                  href={`/products?page=${productsData.pagination.page - 1}${searchParams.toString() ? `&${searchParams.toString()}` : ''}`}
+                  className="px-4 py-2.5 rounded-lg border border-brand-200 text-brand-900 hover:bg-brand-50 transition-colors font-medium text-sm"
                 >
-                  {i + 1}
+                  ← Previous
                 </a>
-              ))}
-            </div>
+              )}
+
+              {/* Page Numbers */}
+              <div className="flex gap-1">
+                {Array.from({ length: Math.min(7, productsData.pagination.pages) }).map((_, i) => {
+                  let pageNum = i + 1;
+                  if (productsData.pagination.pages > 7 && i >= 3) {
+                    pageNum = productsData.pagination.pages - (6 - i);
+                  }
+                  if (pageNum < 1 || pageNum > productsData.pagination.pages) return null;
+
+                  const isActive = productsData.pagination.page === pageNum;
+
+                  return (
+                    <a
+                      key={pageNum}
+                      href={`/products?page=${pageNum}${searchParams.toString() ? `&${searchParams.toString()}` : ''}`}
+                      className={`px-3 py-2.5 rounded-lg font-medium text-sm transition-all ${
+                        isActive
+                          ? 'bg-brand-800 text-white shadow-md'
+                          : 'border border-brand-200 text-brand-900 hover:bg-brand-50'
+                      }`}
+                    >
+                      {pageNum}
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Next Button */}
+              {productsData.pagination.page < productsData.pagination.pages && (
+                <a
+                  href={`/products?page=${productsData.pagination.page + 1}${searchParams.toString() ? `&${searchParams.toString()}` : ''}`}
+                  className="px-4 py-2.5 rounded-lg border border-brand-200 text-brand-900 hover:bg-brand-50 transition-colors font-medium text-sm"
+                >
+                  Next →
+                </a>
+              )}
+            </motion.div>
           )}
         </div>
       </div>
@@ -81,17 +139,38 @@ function ProductsContent() {
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Shop</h1>
-          <p className="text-gray-600 mt-2">Browse our collection of products</p>
-        </div>
-
-        <Suspense fallback={<div className="text-center py-12">Loading products...</div>}>
-          <ProductsContent />
-        </Suspense>
+    <div className="min-h-screen bg-brand-50">
+      {/* Compact Header */}
+      <div className="bg-white border-b border-brand-200">
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="container-max px-4 sm:px-6 lg:px-8 py-6 md:py-8"
+        >
+          <h1 className="text-2xl md:text-3xl font-bold text-brand-900">
+            Shop
+          </h1>
+          <p className="text-brand-600 text-sm mt-1">
+            {/* Minimal, clean subtitle */}
+            Browse our collection of premium products
+          </p>
+        </motion.div>
       </div>
+
+      {/* Content Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3, delay: 0.05 }}
+        className="section-padding"
+      >
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <Suspense fallback={<div className="text-center py-12 text-brand-600">Loading products...</div>}>
+            <ProductsContent />
+          </Suspense>
+        </div>
+      </motion.div>
     </div>
   );
 }
