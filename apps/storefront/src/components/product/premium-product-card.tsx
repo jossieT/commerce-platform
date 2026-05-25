@@ -7,6 +7,7 @@ import { ShoppingBag, Heart } from 'lucide-react';
 import { Product } from '@/lib/products-api';
 import { useCartStore } from '@/store/cart.store';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface PremiumProductCardProps {
   product: Product;
@@ -14,8 +15,10 @@ interface PremiumProductCardProps {
 }
 
 export function PremiumProductCard({ product, index = 0 }: PremiumProductCardProps) {
+  const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
   const [isAdding, setIsAdding] = useState(false);
+  const [isBuying, setIsBuying] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const primaryVariant = product.variants[0];
@@ -46,6 +49,30 @@ export function PremiumProductCard({ product, index = 0 }: PremiumProductCardPro
       setTimeout(() => setIsAdding(false), 600);
     } catch {
       setIsAdding(false);
+    }
+  };
+
+  const handleBuyNow = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isOutOfStock) return;
+    
+    setIsBuying(true);
+
+    try {
+      addItem({
+        productId: product.id,
+        variantId: primaryVariant.id,
+        name: product.name,
+        variantName: primaryVariant.name,
+        price: primaryVariant.price,
+        imageUrl: thumbnailImage?.url,
+        quantity: 1,
+      });
+      
+      router.push('/cart');
+    } catch {
+      setIsBuying(false);
     }
   };
 
@@ -96,29 +123,42 @@ export function PremiumProductCard({ product, index = 0 }: PremiumProductCardPro
           {/* Quick Actions overlay */}
           <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
-          <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-center translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+          <div className="absolute bottom-4 left-0 right-0 px-4 flex justify-between items-center translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out gap-2">
             <button
               onClick={handleAddToCart}
-              disabled={isOutOfStock || isAdding}
-              className={`flex-1 py-3 px-4 backdrop-blur-md bg-white/90 text-brand-900 text-sm font-semibold rounded-full shadow-lg flex items-center justify-center gap-2 hover:bg-white transition-colors
+              disabled={isOutOfStock || isAdding || isBuying}
+              title="Add to Cart"
+              className={`p-3 backdrop-blur-md bg-white/90 text-brand-900 rounded-full shadow-lg hover:bg-white transition-colors
                 ${isOutOfStock ? 'opacity-50 cursor-not-allowed' : ''}
               `}
             >
               {isAdding ? (
                 <div className="w-4 h-4 border-2 border-brand-900 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <ShoppingBag size={18} />
+              )}
+            </button>
+
+            <button
+              onClick={handleBuyNow}
+              disabled={isOutOfStock || isAdding || isBuying}
+              className={`flex-1 py-3 px-4 backdrop-blur-md bg-brand-900/90 text-white text-sm font-semibold rounded-full shadow-lg flex items-center justify-center hover:bg-brand-900 transition-colors
+                ${isOutOfStock ? 'opacity-50 cursor-not-allowed' : ''}
+              `}
+            >
+              {isBuying ? (
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : isOutOfStock ? (
                 <span>Sold Out</span>
               ) : (
-                <>
-                  <ShoppingBag size={16} />
-                  <span>Add to Cart</span>
-                </>
+                <span>Buy Now</span>
               )}
             </button>
             
             <button
               onClick={handleWishlist}
-              className="ml-3 p-3 backdrop-blur-md bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors"
+              title="Add to Wishlist"
+              className="p-3 backdrop-blur-md bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors"
               aria-label="Add to wishlist"
             >
               <Heart

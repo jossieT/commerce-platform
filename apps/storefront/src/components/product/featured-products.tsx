@@ -43,7 +43,7 @@ export function FeaturedProducts({
         { id: 'v1', name: 'Default', sku: 'SKU-1', price: 250, stock: 10, attributes: {}, isActive: true }
       ],
       images: [
-        { id: 'i1', url: 'https://placehold.co/600x800/png?text=Leather+Tote', displayOrder: 0, isThumbnail: true, altText: 'Leather Tote' }
+        { id: 'i1', url: 'https://images.pexels.com/photos/23223861/pexels-photo-23223861.jpeg?auto=compress&cs=tinysrgb&w=800', displayOrder: 0, isThumbnail: true, altText: 'Leather Tote' }
       ]
     },
     {
@@ -66,7 +66,7 @@ export function FeaturedProducts({
         { id: 'v2', name: 'Default', sku: 'SKU-2', price: 195, stock: 5, attributes: {}, isActive: true }
       ],
       images: [
-        { id: 'i2', url: 'https://placehold.co/600x800/png?text=Gold+Watch', displayOrder: 0, isThumbnail: true, altText: 'Gold Watch' }
+        { id: 'i2', url: 'https://images.pexels.com/photos/10556485/pexels-photo-10556485.jpeg?auto=compress&cs=tinysrgb&w=800', displayOrder: 0, isThumbnail: true, altText: 'Gold Watch' }
       ]
     },
     {
@@ -89,7 +89,7 @@ export function FeaturedProducts({
         { id: 'v3', name: 'Default', sku: 'SKU-3', price: 120, stock: 20, attributes: {}, isActive: true }
       ],
       images: [
-        { id: 'i3', url: 'https://placehold.co/600x800/png?text=Cashmere+Sweater', displayOrder: 0, isThumbnail: true, altText: 'Cashmere Sweater' }
+        { id: 'i3', url: 'https://images.pexels.com/photos/30569741/pexels-photo-30569741.jpeg?auto=compress&cs=tinysrgb&w=800', displayOrder: 0, isThumbnail: true, altText: 'Cashmere Sweater' }
       ]
     },
     {
@@ -112,7 +112,7 @@ export function FeaturedProducts({
         { id: 'v4', name: 'Default', sku: 'SKU-4', price: 85, stock: 15, attributes: {}, isActive: true }
       ],
       images: [
-        { id: 'i4', url: 'https://placehold.co/600x800/png?text=Ceramic+Vase', displayOrder: 0, isThumbnail: true, altText: 'Ceramic Vase' }
+        { id: 'i4', url: 'https://images.pexels.com/photos/16124848/pexels-photo-16124848.jpeg?auto=compress&cs=tinysrgb&w=800', displayOrder: 0, isThumbnail: true, altText: 'Ceramic Vase' }
       ]
     }
   ];
