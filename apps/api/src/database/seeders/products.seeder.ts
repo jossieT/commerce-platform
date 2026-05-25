@@ -94,7 +94,7 @@ export class ProductsSeeder {
         name: cat.name,
         slug: generateSlug(cat.name),
         description: cat.description,
-        imageUrl: `https://via.placeholder.com/300x200?text=${encodeURIComponent(cat.name)}`,
+        imageUrl: `https://placehold.co/300x200/png?text=${encodeURIComponent(cat.name)}`,
       });
       categories.push(await categoryRepo.save(category));
     }
@@ -168,7 +168,7 @@ export class ProductsSeeder {
       for (let i = 0; i < 3; i++) {
         const image = imageRepo.create({
           productId: savedProduct.id,
-          url: `https://via.placeholder.com/500x500?text=${encodeURIComponent(productData.name)}+${i + 1}`,
+          url: `https://placehold.co/500x500/png?text=${encodeURIComponent(productData.name)}+${i + 1}`,
           altText: `${productData.name} - Image ${i + 1}`,
           displayOrder: i,
           isThumbnail: i === 0,
