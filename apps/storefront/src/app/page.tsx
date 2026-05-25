@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { productsApi } from '@/lib/products-api';
-import { ProductGrid } from '@/components/product/product-grid';
+import { FeaturedProducts } from '@/components/product/featured-products';
 import { PremiumHero } from '@/components/hero/premium-hero';
 
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -59,28 +59,8 @@ export default async function HomePage() {
         ctas={ctas}
       />
 
-      {/* Featured Products Section */}
-      <section className="w-full px-4 py-16 sm:py-20 lg:py-24 sm:px-6 lg:px-8 bg-white">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10 sm:mb-12 flex items-end justify-between">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Featured Products</h2>
-              <p className="mt-1 sm:mt-2 text-base sm:text-lg text-gray-600">Handpicked selections just for you.</p>
-            </div>
-            <Link href="/products" className="hidden sm:block text-sm font-semibold text-blue-600 hover:text-blue-500 hover:underline whitespace-nowrap ml-4">
-              View all <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </div>
-
-          <ProductGrid products={featuredProducts} />
-
-          <div className="mt-10 sm:mt-12 text-center sm:hidden">
-            <Link href="/products" className="text-sm font-semibold text-blue-600 hover:text-blue-500 hover:underline">
-              View all products <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Premium Featured Products Section */}
+      <FeaturedProducts products={featuredProducts} />
 
       {/* Trust Badges / Info Section */}
       <section className="w-full bg-gradient-to-b from-gray-50 to-white py-14 sm:py-16 lg:py-20 border-t border-gray-100">

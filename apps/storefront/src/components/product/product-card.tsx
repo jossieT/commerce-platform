@@ -73,7 +73,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
   return (
     <motion.div
-      variants={cardVariants}
+      variants={cardVariants as any}
       initial="hidden"
       animate="visible"
       whileHover="hover"
@@ -83,7 +83,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           {/* Image Container */}
           <div className="relative w-full aspect-square overflow-hidden bg-brand-50">
             <motion.div
-              variants={imageVariants}
+              variants={imageVariants as any}
               initial="initial"
               whileHover="hover"
               className="relative w-full h-full"
