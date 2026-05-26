@@ -78,14 +78,14 @@ export function PremiumHero({ images, headline, subheading, ctas }: PremiumHeroP
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-slate-900 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 h-[75vh] lg:h-[80vh] flex items-center justify-center"
+      className="relative w-full overflow-hidden bg-slate-50 dark:bg-slate-900 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 h-[75vh] lg:h-[80vh] flex items-center justify-center"
       onMouseEnter={() => setIsAutoScroll(false)}
       onMouseLeave={() => setIsAutoScroll(true)}
     >
       {/* Background image carousel */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Lighter overlay gradient for better image visibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/40 via-slate-900/20 to-slate-900/40 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-100/40 dark:from-slate-900/40 via-slate-100/20 dark:via-slate-900/20 to-slate-100/40 dark:to-slate-900/40 z-10" />
 
         {/* Animated image carousel */}
         <motion.div
@@ -119,7 +119,7 @@ export function PremiumHero({ images, headline, subheading, ctas }: PremiumHeroP
       {/* Navigation Buttons */}
       <motion.button
         onClick={handlePrevious}
-        className="absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 group"
+        className="absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 bg-slate-900/10 dark:bg-white/10 hover:bg-slate-900/20 dark:hover:bg-white/20 backdrop-blur-md text-slate-900 dark:text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 group"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Previous image"
@@ -129,7 +129,7 @@ export function PremiumHero({ images, headline, subheading, ctas }: PremiumHeroP
 
       <motion.button
         onClick={handleNext}
-        className="absolute right-4 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 group"
+        className="absolute right-4 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 bg-slate-900/10 dark:bg-white/10 hover:bg-slate-900/20 dark:hover:bg-white/20 backdrop-blur-md text-slate-900 dark:text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 group"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Next image"
@@ -144,13 +144,13 @@ export function PremiumHero({ images, headline, subheading, ctas }: PremiumHeroP
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-tight drop-shadow-lg">
+          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl leading-tight drop-shadow-lg">
             {headline}
           </h1>
         </motion.div>
 
         <motion.p
-          className="mx-auto max-w-xl text-base sm:text-lg text-slate-200 leading-relaxed px-2 drop-shadow"
+          className="mx-auto max-w-xl text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed px-2 drop-shadow"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}

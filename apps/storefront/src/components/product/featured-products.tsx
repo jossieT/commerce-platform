@@ -141,7 +141,7 @@ export function FeaturedProducts({
   };
 
   return (
-    <section className="w-full px-4 py-20 sm:py-28 lg:py-32 sm:px-6 lg:px-8 bg-white border-t border-brand-100 overflow-hidden">
+    <section className="w-full px-4 py-20 sm:py-28 lg:py-32 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 border-t border-brand-100 dark:border-gray-800 overflow-hidden transition-colors duration-200">
       <div className="mx-auto max-w-7xl">
         
         {/* Section Header */}
@@ -158,11 +158,11 @@ export function FeaturedProducts({
                 {eyebrow}
               </span>
             )}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-900 dark:text-white mb-4">
               {title}
             </h2>
             {subtitle && (
-              <p className="text-base sm:text-lg text-brand-600 max-w-xl leading-relaxed">
+              <p className="text-base sm:text-lg text-brand-600 dark:text-gray-300 max-w-xl leading-relaxed">
                 {subtitle}
               </p>
             )}
@@ -171,9 +171,9 @@ export function FeaturedProducts({
           {viewAllLink && (
             <Link 
               href={viewAllLink} 
-              className="group inline-flex items-center text-sm font-semibold text-brand-900 uppercase tracking-wider hover:text-brand-600 transition-colors"
+              className="group inline-flex items-center text-sm font-semibold text-brand-900 dark:text-white uppercase tracking-wider hover:text-brand-600 dark:hover:text-gray-300 transition-colors"
             >
-              <span className="border-b border-brand-900 pb-0.5 group-hover:border-brand-600 transition-colors">
+              <span className="border-b border-brand-900 dark:border-white pb-0.5 group-hover:border-brand-600 dark:group-hover:border-gray-300 transition-colors">
                 View Collection
               </span>
               <svg 

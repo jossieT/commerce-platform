@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+// @ts-ignore
 import sharedConfig from '@repo/config/tailwind';
 
 const config: Config = {

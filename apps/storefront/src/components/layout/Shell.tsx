@@ -7,7 +7,7 @@ interface ShellProps {
 
 export function Shell({ children }: ShellProps) {
   return (
-    <div className="relative flex min-h-screen flex-col bg-brand-50">
+    <div className="relative flex min-h-screen flex-col bg-brand-50 dark:bg-slate-950 text-brand-900 dark:text-white transition-colors duration-300">
       <Header />
       {/* Top padding accounts for fixed header height (~72px on mobile, ~80px on desktop) */}
       <main className="flex-1 w-full pt-20 md:pt-24">

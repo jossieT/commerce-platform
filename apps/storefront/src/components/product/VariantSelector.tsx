@@ -40,7 +40,7 @@ export function ColorSelector({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-semibold text-white">
+        <label className="text-sm font-semibold text-slate-900 dark:text-white">
           {label}
           <span className="text-blue-400">
             {selectedVariantId
@@ -120,7 +120,7 @@ export function SizeSelector({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-semibold text-white">
+        <label className="text-sm font-semibold text-slate-900 dark:text-white">
           {label}
           <span className="text-blue-400">
             {selectedVariantId

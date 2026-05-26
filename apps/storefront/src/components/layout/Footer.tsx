@@ -31,19 +31,19 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-brand-200 mt-auto">
+    <footer className="bg-white dark:bg-slate-900/50 border-t border-brand-200 dark:border-slate-800/80 mt-auto transition-colors duration-300">
       <div className="container-max px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group">
-              <div className="w-9 h-9 bg-brand-800 rounded-lg flex items-center justify-center text-white font-bold text-lg group-hover:scale-105 transition-transform">
+              <div className="w-9 h-9 bg-brand-800 dark:bg-brand-700 rounded-lg flex items-center justify-center text-white font-bold text-lg group-hover:scale-105 transition-transform">
                 S
               </div>
-              <span className="text-xl font-bold tracking-tight text-brand-900">STORE.</span>
+              <span className="text-xl font-bold tracking-tight text-brand-900 dark:text-white">STORE.</span>
             </Link>
 
-            <p className="text-brand-600 text-sm max-w-sm mb-6 leading-relaxed">
+            <p className="text-brand-600 dark:text-brand-400 text-sm max-w-sm mb-6 leading-relaxed">
               Your premium shopping destination for high-quality products. We blend modern design with unparalleled customer service.
             </p>
 
@@ -58,7 +58,7 @@ export function Footer() {
                 >
                   <a
                     href={`https://${social.toLowerCase()}.com`}
-                    className="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 hover:bg-brand-800 hover:text-white transition-colors font-semibold text-sm"
+                    className="w-10 h-10 rounded-full bg-brand-100 dark:bg-slate-800/60 flex items-center justify-center text-brand-600 dark:text-brand-300 hover:bg-brand-800 dark:hover:bg-brand-700 hover:text-white dark:hover:text-white transition-colors font-semibold text-sm"
                     aria-label={social}
                   >
                     {social[0]}
@@ -70,7 +70,7 @@ export function Footer() {
 
           {/* Shop Links */}
           <div>
-            <h3 className="font-bold text-brand-900 mb-4 text-sm uppercase tracking-widest">
+            <h3 className="font-bold text-brand-900 dark:text-white mb-4 text-sm uppercase tracking-widest">
               Shop
             </h3>
             <ul className="space-y-3">
@@ -78,7 +78,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-brand-600 hover:text-brand-900 transition-colors"
+                    className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -89,7 +89,7 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="font-bold text-brand-900 mb-4 text-sm uppercase tracking-widest">
+            <h3 className="font-bold text-brand-900 dark:text-white mb-4 text-sm uppercase tracking-widest">
               Company
             </h3>
             <ul className="space-y-3">
@@ -97,7 +97,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-brand-600 hover:text-brand-900 transition-colors"
+                    className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -108,7 +108,7 @@ export function Footer() {
 
           {/* Support Links */}
           <div>
-            <h3 className="font-bold text-brand-900 mb-4 text-sm uppercase tracking-widest">
+            <h3 className="font-bold text-brand-900 dark:text-white mb-4 text-sm uppercase tracking-widest">
               Support
             </h3>
             <ul className="space-y-3">
@@ -116,7 +116,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-brand-600 hover:text-brand-900 transition-colors"
+                    className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -127,8 +127,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-brand-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-sm text-brand-600">
+        <div className="border-t border-brand-200 dark:border-slate-800/80 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-sm text-brand-600 dark:text-brand-400">
             © {new Date().getFullYear()} STORE. All rights reserved.
           </p>
           <div className="flex gap-6">
@@ -136,7 +136,7 @@ export function Footer() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-xs text-brand-600 hover:text-brand-900 transition-colors"
+                className="text-xs text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white transition-colors"
               >
                 {link.name}
               </Link>

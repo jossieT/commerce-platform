@@ -59,10 +59,10 @@ function ProductsContent() {
             <p className="text-sm font-medium text-brand-600">
               {productsData?.pagination ? (
                 <>
-                  <span className="text-brand-900 font-semibold">{productsData.pagination.total}</span> products
+                  <span className="text-brand-900 dark:text-white font-semibold">{productsData.pagination.total}</span> products
                   {productsData.pagination.page > 1 && (
                     <>
-                      {' '} • Page <span className="text-brand-900 font-semibold">{productsData.pagination.page}</span>
+                      {' '} • Page <span className="text-brand-900 dark:text-white font-semibold">{productsData.pagination.page}</span>
                     </>
                   )}
                 </>
@@ -87,7 +87,7 @@ function ProductsContent() {
               {productsData.pagination.page > 1 && (
                 <a
                   href={`/products?page=${productsData.pagination.page - 1}${searchParams.toString() ? `&${searchParams.toString()}` : ''}`}
-                  className="px-4 py-2.5 rounded-lg border border-brand-200 text-brand-900 hover:bg-brand-50 transition-colors font-medium text-sm"
+                  className="px-4 py-2.5 rounded-lg border border-brand-200 dark:border-gray-700 text-brand-900 dark:text-white hover:bg-brand-50 dark:hover:bg-gray-800 transition-colors font-medium text-sm"
                 >
                   ← Previous
                 </a>
@@ -110,8 +110,8 @@ function ProductsContent() {
                       href={`/products?page=${pageNum}${searchParams.toString() ? `&${searchParams.toString()}` : ''}`}
                       className={`px-3 py-2.5 rounded-lg font-medium text-sm transition-all ${
                         isActive
-                          ? 'bg-brand-800 text-white shadow-md'
-                          : 'border border-brand-200 text-brand-900 hover:bg-brand-50'
+                          ? 'bg-brand-800 text-white shadow-md dark:bg-brand-600'
+                          : 'border border-brand-200 dark:border-gray-700 text-brand-900 dark:text-gray-300 hover:bg-brand-50 dark:hover:bg-gray-800'
                       }`}
                     >
                       {pageNum}
@@ -124,7 +124,7 @@ function ProductsContent() {
               {productsData.pagination.page < productsData.pagination.pages && (
                 <a
                   href={`/products?page=${productsData.pagination.page + 1}${searchParams.toString() ? `&${searchParams.toString()}` : ''}`}
-                  className="px-4 py-2.5 rounded-lg border border-brand-200 text-brand-900 hover:bg-brand-50 transition-colors font-medium text-sm"
+                  className="px-4 py-2.5 rounded-lg border border-brand-200 dark:border-gray-700 text-brand-900 dark:text-white hover:bg-brand-50 dark:hover:bg-gray-800 transition-colors font-medium text-sm"
                 >
                   Next →
                 </a>
@@ -139,19 +139,19 @@ function ProductsContent() {
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-brand-50">
+    <div className="min-h-screen bg-brand-50 dark:bg-gray-900 transition-colors duration-200">
       {/* Compact Header */}
-      <div className="bg-white border-b border-brand-200">
+      <div className="bg-white dark:bg-gray-800 border-b border-brand-200 dark:border-gray-700 transition-colors duration-200">
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
           className="container-max px-4 sm:px-6 lg:px-8 py-6 md:py-8"
         >
-          <h1 className="text-2xl md:text-3xl font-bold text-brand-900">
+          <h1 className="text-2xl md:text-3xl font-bold text-brand-900 dark:text-white">
             Shop
           </h1>
-          <p className="text-brand-600 text-sm mt-1">
+          <p className="text-brand-600 dark:text-gray-300 text-sm mt-1">
             {/* Minimal, clean subtitle */}
             Browse our collection of premium products
           </p>
@@ -166,7 +166,7 @@ export default function ProductsPage() {
         className="section-padding"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <Suspense fallback={<div className="text-center py-12 text-brand-600">Loading products...</div>}>
+          <Suspense fallback={<div className="text-center py-12 text-brand-600 dark:text-gray-400">Loading products...</div>}>
             <ProductsContent />
           </Suspense>
         </div>

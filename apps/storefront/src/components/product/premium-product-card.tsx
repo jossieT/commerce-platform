@@ -104,7 +104,7 @@ export function PremiumProductCard({ product, index = 0 }: PremiumProductCardPro
       <Link href={`/products/${product.slug}`} className="flex flex-col h-full cursor-pointer">
         
         {/* Image Container */}
-        <div className="relative w-full aspect-[3/4] overflow-hidden bg-brand-50 rounded-lg mb-4">
+        <div className="relative w-full aspect-[3/4] overflow-hidden bg-brand-50 dark:bg-gray-800 rounded-lg mb-4">
           {thumbnailImage?.url ? (
             <Image
               src={thumbnailImage.url}
@@ -115,7 +115,7 @@ export function PremiumProductCard({ product, index = 0 }: PremiumProductCardPro
               priority={index < 4}
             />
           ) : (
-            <div className="w-full h-full bg-brand-100 flex items-center justify-center">
+            <div className="w-full h-full bg-brand-100 dark:bg-gray-700 flex items-center justify-center">
               <span className="text-brand-400 text-sm">No Image</span>
             </div>
           )}
@@ -128,7 +128,7 @@ export function PremiumProductCard({ product, index = 0 }: PremiumProductCardPro
               onClick={handleAddToCart}
               disabled={isOutOfStock || isAdding || isBuying}
               title="Add to Cart"
-              className={`p-3 backdrop-blur-md bg-white/90 text-brand-900 rounded-full shadow-lg hover:bg-white transition-colors
+              className={`p-3 backdrop-blur-md bg-white/90 dark:bg-gray-800/90 text-brand-900 dark:text-white rounded-full shadow-lg hover:bg-white dark:hover:bg-gray-700 transition-colors
                 ${isOutOfStock ? 'opacity-50 cursor-not-allowed' : ''}
               `}
             >
@@ -142,7 +142,7 @@ export function PremiumProductCard({ product, index = 0 }: PremiumProductCardPro
             <button
               onClick={handleBuyNow}
               disabled={isOutOfStock || isAdding || isBuying}
-              className={`flex-1 py-3 px-4 backdrop-blur-md bg-brand-900/90 text-white text-sm font-semibold rounded-full shadow-lg flex items-center justify-center hover:bg-brand-900 transition-colors
+              className={`flex-1 py-3 px-4 backdrop-blur-md bg-brand-900/90 dark:bg-gray-700/90 text-white text-sm font-semibold rounded-full shadow-lg flex items-center justify-center hover:bg-brand-900 dark:hover:bg-gray-600 transition-colors
                 ${isOutOfStock ? 'opacity-50 cursor-not-allowed' : ''}
               `}
             >
@@ -158,12 +158,12 @@ export function PremiumProductCard({ product, index = 0 }: PremiumProductCardPro
             <button
               onClick={handleWishlist}
               title="Add to Wishlist"
-              className="p-3 backdrop-blur-md bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors"
+              className="p-3 backdrop-blur-md bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg hover:bg-white dark:hover:bg-gray-700 transition-colors"
               aria-label="Add to wishlist"
             >
               <Heart
                 size={18}
-                className={`transition-colors duration-300 ${isWishlisted ? 'fill-red-500 text-red-500' : 'text-brand-900'}`}
+                className={`transition-colors duration-300 ${isWishlisted ? 'fill-red-500 text-red-500' : 'text-brand-900 dark:text-white'}`}
               />
             </button>
           </div>
@@ -172,15 +172,15 @@ export function PremiumProductCard({ product, index = 0 }: PremiumProductCardPro
         {/* Content Container */}
         <div className="flex flex-col flex-1 px-1">
           <div className="flex justify-between items-start mb-1">
-            <h3 className="text-sm font-semibold text-brand-900 line-clamp-1 group-hover:underline underline-offset-4 decoration-1 decoration-brand-300 transition-all">
+            <h3 className="text-sm font-semibold text-brand-900 dark:text-white line-clamp-1 group-hover:underline underline-offset-4 decoration-1 decoration-brand-300 transition-all">
               {product.name}
             </h3>
-            <span className="text-sm font-medium text-brand-900 ml-4">
+            <span className="text-sm font-medium text-brand-900 dark:text-white ml-4">
               ${price.toFixed(2)}
             </span>
           </div>
           
-          <p className="text-xs text-brand-500 uppercase tracking-wider">
+          <p className="text-xs text-brand-500 dark:text-gray-400 uppercase tracking-wider">
             {product.category.name}
           </p>
         </div>
