@@ -63,13 +63,13 @@ export function ProductPage({ product, relatedProducts }: ProductPageProps) {
 
   return (
     <motion.main
-      className="min-h-screen bg-slate-950"
+      className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300"
       variants={pageVariants}
       initial="hidden"
       animate="visible"
     >
       {/* Product Hero Section */}
-      <section className="border-b border-slate-800/50">
+      <section className="border-b border-slate-200 dark:border-slate-800/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
           <ProductHero
             product={product}
@@ -81,7 +81,7 @@ export function ProductPage({ product, relatedProducts }: ProductPageProps) {
       </section>
 
       {/* Product Information Section */}
-      <section className="border-b border-slate-800/50">
+      <section className="border-b border-slate-200 dark:border-slate-800/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
           <ProductInfo product={product} />
         </div>
@@ -89,7 +89,7 @@ export function ProductPage({ product, relatedProducts }: ProductPageProps) {
 
       {/* Reviews Section */}
       {product.rating && (
-        <section className="border-b border-slate-800/50">
+        <section className="border-b border-slate-200 dark:border-slate-800/50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
             <ReviewsSection
               rating={product.rating}

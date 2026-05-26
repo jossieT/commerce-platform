@@ -65,19 +65,19 @@ export function ColorSelector({
           >
             {/* Color Swatch */}
             <div
-              className={`relative w-12 h-12 rounded-full border-2 transition-all duration-300 ${
+            className={`relative w-12 h-12 rounded-full border-2 transition-all duration-300 ${
                 selectedVariantId === variant.id
-                  ? 'border-white shadow-lg shadow-white/20'
+                  ? 'border-slate-900 dark:border-white shadow-lg dark:shadow-white/20'
                   : variant.available
-                    ? 'border-white/20 hover:border-white/40'
-                    : 'border-slate-700/50 opacity-50'
+                    ? 'border-slate-300 dark:border-white/20 hover:border-slate-400 dark:hover:border-white/40'
+                    : 'border-slate-500 dark:border-slate-700/50 opacity-50'
               }`}
               style={{ backgroundColor: variant.colorCode }}
             >
               {selectedVariantId === variant.id && (
                 <motion.div
                   layoutId="color-indicator"
-                  className="absolute inset-0 rounded-full border-2 border-white"
+                  className="absolute inset-0 rounded-full border-2 border-slate-900 dark:border-white"
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 >
                   <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white/20 to-transparent" />
@@ -92,7 +92,7 @@ export function ColorSelector({
             </div>
 
             {/* Tooltip */}
-            <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded text-xs font-medium bg-slate-900 dark:bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
               {variant.colorName || variant.value}
             </div>
           </motion.button>
@@ -138,10 +138,10 @@ export function SizeSelector({
             disabled={!variant.available}
             className={`relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
               selectedVariantId === variant.id
-                ? 'bg-white text-slate-900 shadow-lg shadow-white/20'
+                ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg dark:shadow-white/20'
                 : variant.available
-                  ? 'bg-slate-800/50 text-white hover:bg-slate-700/50 border border-white/10'
-                  : 'bg-slate-900/30 text-slate-500 border border-slate-700/30 opacity-50 cursor-not-allowed'
+                  ? 'bg-slate-200 dark:bg-slate-800/50 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-700/50 border border-slate-400 dark:border-white/10'
+                  : 'bg-slate-300 dark:bg-slate-900/30 text-slate-500 border border-slate-400 dark:border-slate-700/30 opacity-50 cursor-not-allowed'
             }`}
             whileHover={variant.available ? { y: -2 } : {}}
             whileTap={variant.available ? { y: 0 } : {}}
@@ -151,7 +151,7 @@ export function SizeSelector({
             {selectedVariantId === variant.id && (
               <motion.div
                 layoutId="size-indicator"
-                className="absolute inset-0 rounded-lg border-2 border-white"
+                className="absolute inset-0 rounded-lg border-2 border-slate-900 dark:border-white"
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               />
             )}

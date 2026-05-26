@@ -155,7 +155,7 @@ export function ProductHero({
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
           >
-            <p className="text-sm text-blue-400 font-semibold uppercase tracking-wider">
+            <p className="text-sm text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wider">
               {product.category}
               {product.subcategory && ` / ${product.subcategory}`}
             </p>
@@ -163,7 +163,7 @@ export function ProductHero({
 
           {/* Title */}
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-            <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight">
               {product.title}
             </h1>
           </motion.div>
@@ -188,7 +188,7 @@ export function ProductHero({
                   />
                 ))}
               </div>
-              <span className="text-sm text-slate-400">
+              <span className="text-sm text-slate-600 dark:text-slate-400">
                 {product.rating.average.toFixed(1)} (
                 {product.rating.count.toLocaleString()} reviews)
               </span>
@@ -203,12 +203,12 @@ export function ProductHero({
             transition={{ delay: 0.25 }}
           >
             <div className="flex items-baseline gap-4">
-              <span className="text-5xl font-bold text-white">
+              <span className="text-5xl font-bold text-slate-900 dark:text-white">
                 ${product.price.toFixed(2)}
               </span>
               {product.originalPrice && (
                 <>
-                  <span className="text-2xl text-slate-400 line-through">
+                  <span className="text-2xl text-slate-600 dark:text-slate-400 line-through">
                     ${product.originalPrice.toFixed(2)}
                   </span>
                   <motion.span
@@ -222,7 +222,7 @@ export function ProductHero({
               )}
             </div>
             {product.currency && (
-              <p className="text-sm text-slate-400">{product.currency}</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400">{product.currency}</p>
             )}
           </motion.div>
 
@@ -252,7 +252,7 @@ export function ProductHero({
 
           {/* Divider */}
           <motion.div
-            className="h-px bg-gradient-to-r from-slate-700/50 to-transparent"
+            className="h-px bg-gradient-to-r from-slate-400/50 dark:from-slate-700/50 to-transparent"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.35 }}
@@ -286,25 +286,25 @@ export function ProductHero({
             animate={{ opacity: 1 }}
             transition={{ delay: 0.45 }}
           >
-            <label className="text-sm font-semibold text-white">
+            <label className="text-sm font-semibold text-slate-900 dark:text-white">
               Quantity
             </label>
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="w-10 h-10 rounded-lg bg-slate-800/50 hover:bg-slate-700 text-white transition-colors duration-300"
+                className="w-10 h-10 rounded-lg bg-slate-200 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300"
                 aria-label="Decrease quantity"
               >
                 −
               </button>
-              <span className="w-12 text-center text-lg font-semibold text-white">
+              <span className="w-12 text-center text-lg font-semibold text-slate-900 dark:text-white">
                 {quantity}
               </span>
               <button
                 onClick={() =>
                   setQuantity(Math.min(product.stockCount, quantity + 1))
                 }
-                className="w-10 h-10 rounded-lg bg-slate-800/50 hover:bg-slate-700 text-white transition-colors duration-300"
+                className="w-10 h-10 rounded-lg bg-slate-200 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300"
                 disabled={quantity >= product.stockCount}
                 aria-label="Increase quantity"
               >
@@ -326,7 +326,7 @@ export function ProductHero({
               disabled={!product.inStock || isAddingToCart}
               className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 ${
                 addedToCart
-                  ? 'bg-green-600 text-white'
+                  ? 'bg-green-600 hover:bg-green-700 text-white'
                   : 'bg-blue-600 hover:bg-blue-700 text-white'
               } disabled:opacity-50 disabled:cursor-not-allowed`}
               whileHover={product.inStock ? { scale: 1.02 } : {}}
@@ -343,7 +343,7 @@ export function ProductHero({
             {/* Buy Now Button */}
             <motion.button
               disabled={!product.inStock}
-              className="w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 border border-white/20 hover:border-white/40 text-white hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 border border-slate-900/20 dark:border-white/20 hover:border-slate-900/40 dark:hover:border-white/40 text-slate-900 dark:text-white hover:bg-slate-900/5 dark:hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed"
               whileHover={product.inStock ? { scale: 1.02 } : {}}
               whileTap={product.inStock ? { scale: 0.98 } : {}}
             >
@@ -361,7 +361,7 @@ export function ProductHero({
             {/* Wishlist Button */}
             <motion.button
               onClick={handleAddToWishlist}
-              className="flex-1 py-3 rounded-lg border border-white/20 hover:border-white/40 text-white hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2"
+              className="flex-1 py-3 rounded-lg border border-slate-900/20 dark:border-white/20 hover:border-slate-900/40 dark:hover:border-white/40 text-slate-900 dark:text-white hover:bg-slate-900/5 dark:hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               aria-label="Add to wishlist"
@@ -379,7 +379,7 @@ export function ProductHero({
             {/* Share Button */}
             <motion.button
               onClick={() => onShare?.(product)}
-              className="flex-1 py-3 rounded-lg border border-white/20 hover:border-white/40 text-white hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2"
+              className="flex-1 py-3 rounded-lg border border-slate-900/20 dark:border-white/20 hover:border-slate-900/40 dark:hover:border-white/40 text-slate-900 dark:text-white hover:bg-slate-900/5 dark:hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               aria-label="Share product"
@@ -391,18 +391,18 @@ export function ProductHero({
 
           {/* Trust Badges */}
           <motion.div
-            className="grid grid-cols-2 gap-3 pt-6 border-t border-slate-800/50"
+            className="grid grid-cols-2 gap-3 pt-6 border-t border-slate-200 dark:border-slate-800/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
             <div className="text-center text-sm">
-              <p className="text-slate-400">Free Shipping</p>
-              <p className="text-white font-semibold">On Orders Over $50</p>
+              <p className="text-slate-600 dark:text-slate-400">Free Shipping</p>
+              <p className="text-slate-900 dark:text-white font-semibold">On Orders Over $50</p>
             </div>
             <div className="text-center text-sm">
-              <p className="text-slate-400">Easy Returns</p>
-              <p className="text-white font-semibold">30-Day Guarantee</p>
+              <p className="text-slate-600 dark:text-slate-400">Easy Returns</p>
+              <p className="text-slate-900 dark:text-white font-semibold">30-Day Guarantee</p>
             </div>
           </motion.div>
         </div>

@@ -72,20 +72,20 @@ export function ProductGallery({
   return (
     <div className="flex flex-col gap-6">
       {/* Main Image */}
-      <div className="relative w-full bg-gradient-to-br from-slate-900 to-slate-950 rounded-xl overflow-hidden aspect-square group">
+      <div className="relative w-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-950 rounded-xl overflow-hidden aspect-square group">
         {/* Navigation Buttons */}
         {!isMobile && (
           <>
             <button
               onClick={handlePrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 backdrop-blur-sm group-hover:opacity-100 opacity-0"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-slate-900/10 hover:bg-slate-900/20 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white transition-all duration-300 backdrop-blur-sm group-hover:opacity-100 opacity-0"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 backdrop-blur-sm group-hover:opacity-100 opacity-0"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-slate-900/10 hover:bg-slate-900/20 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white transition-all duration-300 backdrop-blur-sm group-hover:opacity-100 opacity-0"
               aria-label="Next image"
             >
               <ChevronRight className="w-6 h-6" />
@@ -96,7 +96,7 @@ export function ProductGallery({
         {/* Zoom Button */}
         <button
           onClick={() => setIsZoomed(!isZoomed)}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 backdrop-blur-sm"
+          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-900/10 hover:bg-slate-900/20 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white transition-all duration-300 backdrop-blur-sm"
           aria-label="Zoom image"
         >
           <ZoomIn className="w-5 h-5" />
@@ -104,7 +104,7 @@ export function ProductGallery({
 
         {/* Image Counter */}
         {isMobile && images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/50 text-white text-xs font-medium backdrop-blur-sm">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-900/50 dark:bg-black/50 text-white text-xs font-medium backdrop-blur-sm">
             {selectedIndex + 1} / {images.length}
           </div>
         )}
@@ -153,8 +153,8 @@ export function ProductGallery({
               onClick={() => handleThumbnailClick(index)}
               className={`flex-shrink-0 relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                 selectedIndex === index
-                  ? 'border-white shadow-lg'
-                  : 'border-white/10 hover:border-white/30'
+                  ? 'border-slate-900 dark:border-white shadow-lg'
+                  : 'border-slate-300 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30'
               }`}
               aria-label={`View image ${index + 1}`}
               aria-current={selectedIndex === index}
@@ -182,7 +182,7 @@ export function ProductGallery({
 
       {/* Image Info Text */}
       {images.length > 1 && (
-        <div className="text-xs text-slate-400">
+        <div className="text-xs text-slate-600 dark:text-slate-400">
           <p>
             Click thumbnails or use arrow keys to navigate • Click zoom icon to
             magnify

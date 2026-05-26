@@ -33,7 +33,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
   return (
     <Link href={`/products/${product.slug}`}>
       <motion.div
-        className="group relative rounded-xl overflow-hidden bg-slate-900/50 border border-slate-800/50 hover:border-slate-700 transition-all duration-300 h-full cursor-pointer"
+        className="group relative rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/50 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 h-full cursor-pointer"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -41,7 +41,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
         whileHover={{ y: -4 }}
       >
         {/* Image Container */}
-        <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900">
+        <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-slate-200 dark:from-slate-800 to-slate-300 dark:to-slate-900">
           <Image
             src={product.images[0].url}
             alt={product.title}
@@ -68,7 +68,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
               e.preventDefault();
               setIsFavorite(!isFavorite);
             }}
-            className="absolute top-4 left-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 backdrop-blur-sm opacity-0 group-hover:opacity-100"
+            className="absolute top-4 left-4 p-2 rounded-full bg-slate-900/10 hover:bg-slate-900/20 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white transition-all duration-300 backdrop-blur-sm opacity-0 group-hover:opacity-100"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -88,12 +88,12 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
         {/* Content */}
         <div className="p-4">
           {/* Category */}
-          <p className="text-xs text-slate-400 mb-2 uppercase tracking-wider">
+          <p className="text-xs text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-wider">
             {product.category}
           </p>
 
           {/* Title */}
-          <h3 className="font-semibold text-white text-sm mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors duration-300">
+          <h3 className="font-semibold text-slate-900 dark:text-white text-sm mb-3 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
             {product.title}
           </h3>
 
@@ -111,18 +111,18 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
                 />
               ))}
             </div>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-600 dark:text-slate-400">
               ({product.rating.count})
             </span>
           </div>
 
           {/* Price */}
           <div className="flex items-center gap-2">
-            <span className="font-bold text-white">
+            <span className="font-bold text-slate-900 dark:text-white">
               ${product.price.toFixed(2)}
             </span>
             {product.originalPrice && (
-              <span className="text-sm text-slate-400 line-through">
+              <span className="text-sm text-slate-600 dark:text-slate-400 line-through">
                 ${product.originalPrice.toFixed(2)}
               </span>
             )}
@@ -131,7 +131,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Hover Overlay */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+          className="absolute inset-0 bg-gradient-to-t from-slate-900/60 dark:from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
         >
@@ -173,7 +173,7 @@ export function RelatedProducts({
   }
 
   return (
-    <section className="border-t border-slate-800/50 pt-12">
+    <section className="border-t border-slate-200 dark:border-slate-800/50 pt-12">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -181,12 +181,12 @@ export function RelatedProducts({
         viewport={{ once: true }}
       >
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-white">{title}</h2>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{title}</h2>
           {products.length > itemsPerView && !isMobile && (
             <div className="flex gap-2">
               <motion.button
                 onClick={() => handleScroll('left')}
-                className="p-2 rounded-full bg-slate-800/50 hover:bg-slate-700 text-white transition-colors duration-300 disabled:opacity-50"
+                className="p-2 rounded-full bg-slate-300 dark:bg-slate-800/50 hover:bg-slate-400 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300 disabled:opacity-50"
                 disabled={scrollPosition === 0}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -195,7 +195,7 @@ export function RelatedProducts({
               </motion.button>
               <motion.button
                 onClick={() => handleScroll('right')}
-                className="p-2 rounded-full bg-slate-800/50 hover:bg-slate-700 text-white transition-colors duration-300"
+                className="p-2 rounded-full bg-slate-300 dark:bg-slate-800/50 hover:bg-slate-400 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -223,7 +223,7 @@ export function RelatedProducts({
           >
             <Link href="/products">
               <motion.button
-                className="px-6 py-3 rounded-lg border border-slate-700/50 hover:border-slate-600 text-white hover:bg-slate-800/50 font-medium transition-all duration-300"
+                className="px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-700/50 hover:border-slate-400 dark:hover:border-slate-600 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50 font-medium transition-all duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

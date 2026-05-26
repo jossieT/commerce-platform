@@ -45,7 +45,7 @@ function RatingBar({ stars, count, percentage }: RatingBarProps) {
         ))}
       </div>
       <div className="flex-1 max-w-48">
-        <div className="h-2 bg-slate-800/50 rounded-full overflow-hidden">
+        <div className="h-2 bg-slate-300 dark:bg-slate-800/50 rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500"
             initial={{ width: 0 }}
@@ -55,7 +55,7 @@ function RatingBar({ stars, count, percentage }: RatingBarProps) {
           />
         </div>
       </div>
-      <span className="text-sm text-slate-400 w-12 text-right">{count}</span>
+      <span className="text-sm text-slate-600 dark:text-slate-400 w-12 text-right">{count}</span>
     </motion.div>
   );
 }
@@ -75,7 +75,7 @@ function ReviewCard({ review }: ReviewCardProps) {
 
   return (
     <motion.div
-      className="p-6 rounded-lg bg-slate-800/20 border border-slate-700/30 hover:border-slate-700/50 transition-colors duration-300"
+      className="p-6 rounded-lg bg-slate-100 dark:bg-slate-800/20 border border-slate-200 dark:border-slate-700/30 hover:border-slate-300 dark:hover:border-slate-700/50 transition-colors duration-300"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -95,14 +95,14 @@ function ReviewCard({ review }: ReviewCardProps) {
           )}
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-white">{review.author}</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">{review.author}</h3>
               {review.verified && (
                 <span className="px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">
                   Verified Purchase
                 </span>
               )}
             </div>
-            <p className="text-xs text-slate-400">{review.date}</p>
+            <p className="text-xs text-slate-600 dark:text-slate-400">{review.date}</p>
           </div>
         </div>
       </div>
@@ -123,26 +123,26 @@ function ReviewCard({ review }: ReviewCardProps) {
 
       {/* Title & Content */}
       {review.title && (
-        <h4 className="font-semibold text-white mb-2">{review.title}</h4>
+        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{review.title}</h4>
       )}
-      <p className="text-slate-300 text-sm leading-relaxed mb-4">
+      <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-4">
         {review.content}
       </p>
 
       {/* Footer */}
-      <div className="flex items-center gap-6 pt-4 border-t border-slate-700/30">
+      <div className="flex items-center gap-6 pt-4 border-t border-slate-300 dark:border-slate-700/30">
         <button
           onClick={toggleHelpful}
           className={`flex items-center gap-2 text-sm transition-colors duration-300 ${
             helpful
-              ? 'text-blue-400'
-              : 'text-slate-400 hover:text-slate-300'
+              ? 'text-blue-600 dark:text-blue-400'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
           }`}
         >
           <ThumbsUp className={`w-4 h-4 ${helpful ? 'fill-current' : ''}`} />
           Helpful ({helpCount})
         </button>
-        <span className="text-xs text-slate-500">
+        <span className="text-xs text-slate-500 dark:text-slate-500">
           {Math.round((helpCount / 1000) * 100)}% found this helpful
         </span>
       </div>
@@ -158,7 +158,7 @@ export function ReviewsSection({
   const totalReviews = rating.count;
 
   return (
-    <section className="border-t border-slate-800/50 pt-12">
+    <section className="border-t border-slate-200 dark:border-slate-800/50 pt-12">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Rating Summary */}
         <motion.div
@@ -168,17 +168,17 @@ export function ReviewsSection({
           transition={{ duration: 0.3 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold text-white mb-8">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
             Customer Reviews
           </h2>
 
           {/* Overall Rating */}
           <div className="mb-8">
             <div className="flex items-baseline gap-3 mb-2">
-              <span className="text-5xl font-bold text-white">
+              <span className="text-5xl font-bold text-slate-900 dark:text-white">
                 {rating.average.toFixed(1)}
               </span>
-              <span className="text-slate-400">out of 5</span>
+              <span className="text-slate-700 dark:text-slate-400">out of 5</span>
             </div>
 
             {/* Star Display */}
@@ -195,7 +195,7 @@ export function ReviewsSection({
               ))}
             </div>
 
-            <p className="text-sm text-slate-400 mb-6">
+            <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
               Based on {totalReviews.toLocaleString()} verified reviews
             </p>
 
@@ -244,7 +244,7 @@ export function ReviewsSection({
 
               {reviews.length > 0 && (
                 <motion.button
-                  className="w-full mt-6 px-4 py-3 rounded-lg border border-slate-700/50 hover:border-slate-700 text-slate-300 hover:text-white font-medium text-sm transition-all duration-300"
+                    className="w-full mt-6 px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700/50 hover:border-slate-400 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium text-sm transition-all duration-300"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                 >
@@ -260,7 +260,7 @@ export function ReviewsSection({
               transition={{ duration: 0.3 }}
               viewport={{ once: true }}
             >
-              <p className="text-slate-400 mb-4">
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
                 No reviews yet. Be the first to review this product!
               </p>
               <button
